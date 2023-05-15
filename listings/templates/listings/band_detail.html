@@ -1,0 +1,23 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2>{{ band.name }}</h2>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item">Genre : {{ band.get_genre_display }}</li>
+        <li class="list-group-item">Année de formation : {{ band.year_formed }}</li>
+        <li class="list-group-item">Actif : {{ band.active|yesno }}</li>
+        {% if band.official_homepage %}
+        <li class="list-group-item"><a href="{{ band.official_homepage }}">{{ band.official_homepage }}</a></li>
+        {% endif %}
+    </ul>
+
+    <p class="mt-3">{{ band.biography }}</p>
+    <a href="{% url 'band-update' band.id %}" class="btn btn-warning mt-3">Éditer un groupe</a>
+    <a href="{% url 'band-delete' band.id %}" class="btn btn-danger mt-3">Supprimer un groupe</a>
+    <a href="{% url 'band-list' %}" class="btn btn-primary mt-3">Retour à la liste des groupes</a>
+</div>
+
+{% endblock %}

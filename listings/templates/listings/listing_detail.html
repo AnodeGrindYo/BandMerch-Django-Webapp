@@ -1,0 +1,21 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2>{{ listing.title }}</h2>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item">Type: {{ list.get_type_display }}</li>
+        <li class="list-group-item">Année d'origine: {{ listing.year }}</li>
+        <li class="list-group-item">Vendu: {{ listing.sold|yesno }}</li>
+    </ul>
+
+    <p class="mt-3">{{ listing.description }}</p>
+
+    <a href="{% url 'listing-update' band.id %}" class="btn btn-warning mt-3">Éditer cet objet</a>
+    <a href="{% url 'listing-delete' listing.id %}" class="btn btn-danger mt-3">Supprimer cet objet</a>
+    <a href="{% url 'listing-list' %}" class="btn btn-primary mt-3">Retourner à la liste du merch</a>
+</div>
+
+{% endblock %}
